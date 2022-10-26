@@ -41,6 +41,29 @@ class Mahasiswa extends Server
     // fungsi get()
     function service_put()
     {
+        // panggil model mahasiswa
+
+
+        // ambil parameter data yang akan di isi
+        $data = array(
+            "npm" => $this->put("npm"),
+            "nama" => $this->put("nama"),
+            "telepon" => $this->put("telepon"),
+            "jurusan" => $this->put("jurusan"),
+            "token" => base64_encode($this->put("token"))
+        );
+
+        // panggil method update_data
+        $hasil = $this->mdl->update_data($data["npm"], $data["nama"], $data["telepon"], $data["jurusan"], $data["token"]);
+
+        // jika hasil = 0
+        if ($hasil == 0) {
+            $this->response(array("status" => "Data Mahasiswa Berhasil di Update"), 200);
+        }
+        // jika hasil !=0
+        else {
+            $this->response(array("status" => "Data Mahasiswa Gagal di Update"), 200);
+        }
     }
     // fungsi get()
     function service_delete()

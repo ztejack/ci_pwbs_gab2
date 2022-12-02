@@ -42,6 +42,7 @@ class Mahasiswa extends Server
     function service_put()
     {
         // panggil model mahasiswa
+        $this->load->model("Mmahasiswa", "mdl", TRUE);
 
 
         // ambil parameter data yang akan di isi
